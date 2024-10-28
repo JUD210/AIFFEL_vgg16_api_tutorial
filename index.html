@@ -13,8 +13,8 @@
 
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
-    <base href="/">
   -->
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -23,103 +23,16 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="hello_world">
+  <meta name="apple-mobile-web-app-title" content="flutter_lab">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>hello_world</title>
+  <title>flutter_lab</title>
   <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "106841915";
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
 </head>
 <body>
-<script>
-    window.addEventListener("load", function () {
-        if (!parent) {
-            console.log("Not IFrame");
-        }
-        console.log("launchMain");
-        parent?.postMessage({ sender: "frame", type: "launchMain" }, "*");
-    });
-
-    let _console;
-    initConsole();
-    function initConsole() {
-        _console = window.console;
-        window.console = {
-            ..._console,
-            log: function (msg) {
-                sendLog(msg, "text");
-                _console.log.apply(_console, arguments);
-            },
-            info: function (msg) {
-                sendLog(msg, "info");
-                _console.info.apply(_console, arguments);
-            },
-            warn: function (msg) {
-                sendLog(msg, "warning");
-                _console.warn.apply(_console, arguments);
-            },
-            error: function (msg) {
-                sendLog(msg, "error");
-                _console.error.apply(_console, arguments);
-            },
-        };
-        window.onerror = function (error) {
-            sendLog(error, "error");
-            sendError(error);
-        };
-        function sendLog(msg, type) {
-            // TODO: replace with post message
-            // type: log
-            // body => log:{message:msg,type:type}
-            //
-            window.parent.postMessage(
-                {
-                    sender: "frame",
-                    type: "log",
-                    log: { message: msg, type: type },
-                },
-                "*"
-            );
-        }
-        function sendError(error) {
-            // TODO: replace with post message
-            // type: error
-            // body => error
-            //
-            window.parent.postMessage(
-                {
-                    sender: "frame",
-                    type: "error",
-                    error: error,
-                },
-                "*"
-            );
-        }
-    }
-</script>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
